@@ -1,0 +1,13 @@
+measurement_method: grid
+grid_size: 10
+
+rm_dataset_nr: 0          # number of the path loss and radio map dataset to load (corresponds also to noise level)
+meas_dataset_nr: 0        # number of the measurements dataset to sav
+
+
+# Standard deviation of the regular transmitter localization error
+# Set to 0, if position is assumed to be exactly known
+# for paper: 1.02, see also README
+tx_pos_inaccuracy_std: 1.33
+
+save_density_plot: False

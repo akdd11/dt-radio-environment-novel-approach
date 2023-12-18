@@ -1,0 +1,9 @@
+f_c: 3.7e9      # carrier frequency in Hz
+
+nr_samples: 500
+
+dataset_nr: 2
+ 
+
+fspl:
+  noise_std: 4 # noise standard deviation
