@@ -1,3 +1,5 @@
+**WORK IN PROGRESS: Please note, that the code upload and documentation is not yet finished.** 
+
 # Digital Twin of the Radio Environment: A Novel Approach for Anomaly Detection in Wireless Networks
 
 This code is used for the paper:
@@ -23,24 +25,6 @@ The workflow is as follows:
 * **Measurements:** Contains a collection of measurements. File name is *fspl_measurements\<nr\>.pkl*. Each measurement entity is a collection of values, whereby each value is the difference between the measured (original) RSS and the RSS expected from the digital twin at the same location.
 * **Results:** Contains the results of anomaly detecion for a given measurement data set. File name *fspl_results\<nr\>.pkl*. Each file contains a dictionary with the following entries: ```y_test```, ```y_hat``` and ```jammer```. ```jammer``` refers to an array, in which the transmitters of type jammer are saved or an empty array, respectively in case there is no jammer.
 
-## Methods for generation of path loss maps
-
-### Free space path loss
-
-$$ L = 10 \alpha \log \left( \frac{d}{d_0} \right)  + \beta + 10 \gamma \left( \frac{f}{f_0} \right)$$
-
-with $d_0 = 1\text{m}$ and $f_0 = 1\text{Hz}$.
-
-Defaults:
-* $\alpha = 2$
-* $\beta = - 147.55\text{dB}$
-* $\gamma = 2$
-
-Correlated shadowing noise can be added to the original map which has a covariance matrix with the entries
-
-$$[\mathbf{C}]_{a,b} = \sigma_{\text{dB}}^2 \exp\left( -\frac{d(\mathbf{x}_a, \mathbf{x}_b)}{d_{\text{cor}}} \right)$$
-
-for each points $\mathbf{x}_a$ and $\mathbf{x}_b$. $d_{\text{cor}}$ defaults to $1 \text{m}$.
 
 ## Methods for outlier detection
 
