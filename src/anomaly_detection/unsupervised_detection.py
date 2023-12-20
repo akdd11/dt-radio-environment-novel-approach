@@ -18,10 +18,6 @@ from sklearn.cluster import DBSCAN, KMeans, OPTICS
 from sklearn.covariance import EllipticEnvelope
 from sklearn.svm import OneClassSVM
 
-# Own modules
-module_path = __file__[:__file__.find('DT-for-RadioEnv')+len('DT-for-RadioEnv')]
-sys.path.append(os.path.abspath(module_path))
-
 
 # Implemented methods for unsupervised anomaly detection
 unsupervised_methods = ['one_class_svm', 'unsupervised_threshold', 'cnn_autoencoder',
