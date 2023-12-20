@@ -1,0 +1,17 @@
+vary_parameter: grid_size         # 'noise_std' or 'grid_size', parameter that is changed in the simulation
+method: unsupervised_threshold             # 'one_class_svm', 'isolation_forest', 'dbscan', 'lof', 'unsupervised_threshold', 'unsupervised_density', 'elliptic_envelope'
+probability: True                 # Wether to output a probability or a binary classification
+outlier_probability: 0.5
+num_test_samples: 10000           # Number of samples to be used in the test set
+verbosity: 0                      # 0: no output, 1: some intermediate prints
+
+sort_values : True                # Sort the values input in ascending order
+
+dbscan:
+  preprocessing: None             # None, 'sub-avg', 'full-avg', 'sort','sort++' Type of preprocessing to be performed of data point before training or predicting.
+  eps_percentile: 80              # Percentile of the distance distribution to be used as eps
+  min_samples: 100                # Minimum number of samples to be considered a core point
+  grid_size: 20                   # only needed if preprocessing is sub-avg
+
+lof:
+  n_neighbors: 100                # Number of neighbors to be used in the algorithm

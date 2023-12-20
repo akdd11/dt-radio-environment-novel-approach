@@ -146,6 +146,7 @@ with open(os.path.join(dataset_dir, measurements_filenname[:-4]+'.txt'), 'a') as
         print(f'grid_size: {grid_size}', file=f_out)
     else:
         raise NotImplementedError('Only grid measurement method is implemented.')
+    print(f'tx_pos_inaccuracy_std: {pos_std}', file=f_out)
 
 
 sns.kdeplot(jammed_diffs['mean'], label='Jammed')
