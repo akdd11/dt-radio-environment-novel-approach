@@ -1,5 +1,3 @@
-**WORK IN PROGRESS: Please note, that the code upload and documentation is not yet finished.** 
-
 # Digital Twin of the Radio Environment: A Novel Approach for Anomaly Detection in Wireless Networks
 
 This code is used for the paper:
@@ -19,7 +17,7 @@ The following data formats are used in the process of results generation. *fspl*
 * **Path loss map:** Contains a collection of path loss maps. File name is *fspl_PLdataset\<nr\>.pkl*. Each path loss map indicates the path loss between a specific transmitter location and each pixel on the map in dB.
 * **Radio map:** Contains a collection of radio maps. File name is *fspl_RMdataset\<nr\>.pkl*. Each radio maps combines one or several transmitters (regular or jammer) with a specific power and path loss and adds everything up, so that the result is the total RSS at each pixel on the map in dBm.
 * **Measurements:** Contains a collection of measurements. File name is *fspl_measurements\<nr\>.pkl*. Each measurement entity is a collection of values, whereby each value is the difference between the measured (original) RSS and the RSS expected from the digital twin at the same location.
-* **Results:** Contains the results of anomaly detecion for a given measurement data set. File name *fspl_results\<nr\>.pkl*. Each file contains a dictionary with the following entries: ```y_test```, ```y_hat``` and ```jammer```. ```jammer``` refers to an array, in which the transmitters of type jammer are saved or an empty array, respectively in case there is no jammer.
+* **Results:** Contains the results of anomaly detecion for a given measurement data set. File name *fspl_results\<nr\>.pkl*. Each file contains a dictionary with the following entries: ```y_test```, ```y_hat``` and ```jammer```. ```jammer``` refers to an array, in which the transmitters of type jammer are saved or an empty array, respectively in case there is no jammer. ```y_hat``` is a score to allow a soft decision / ROC curve creation.
 
 ### Dataset Generation
 The dataset generation consists of three steps. For each script, there is a corresponding `yaml` file in the `conf` folder, which contains the parameters for each step.
@@ -40,7 +38,23 @@ In the file `fspl_anomaly_detection.yaml` in the `conf` folder, the parameters f
 
 You can find more information in the `yaml` file.
 
-After the results are generated, they can be visualized using the Jupyter notebook `notebooks\roc_curves_fspl.ipynb`. 
+After the results are generated, they can be visualized using the Jupyter notebook `notebooks\roc_curves_fspl.ipynb`.
+
+
+## Reproducing the Results
+
+Due to the given size of the dataset it is not uploaded. You can either contact me to get the dataset or generate it yourself. The following steps are necessary to reproduce the results:
+1. The pathloss maps need to be reproduced. Herefore, execute step 1 from the section *Dataset Generation*. The `yaml` file for this step is `conf\pathloss_map_generation.yaml`. The following parameter combinations need to be run:
+    * `dataset_nr`: 0, 1, 2, 3, 4, 5
+    * `fspl.noise_std`: 0, 2, 4, 6, 8, 10
+2. Execute the second step from the section *Dataset Generation*. The `yaml` file for this step is `conf\radio_map_generation.yaml`. The parameter list for execution is the following:
+    * `dataset_nr`: 0, 1, 2, 3, 4, 5
+3. Execute the third step from the section *Dataset Generation*. The `yaml` file for this step is `conf\measurement_generation.yaml`. The parameter list for execution is the following:
+    * `grid_size`: 10, 10, 10, 10, 10, 10, 5, 15, 20
+    * `rm_dataset_nr`: 0, 1, 2, 3, 4, 5, 1, 1, 1
+    * `meas_dataset_nr`: 0, 1, 2, 3, 4, 5, 10, 11, 12
+
+In the last step, the datasets are generated for a grid size of 10m with the shadowing noise standard deviations [0, 2, 4, 6, 8, 10]. Additionally, the datasets are generated for a shadowing noise standard deviation of 2dB with grid sizes of [5, 15, 20]m. (The dataset for 10 m is already generated.) 
 
 ## Methods for Anomaly Detection
 
