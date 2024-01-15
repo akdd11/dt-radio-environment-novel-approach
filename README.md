@@ -2,13 +2,18 @@
 
 This code is used for the paper:
 
- A. Krause, M.D. Khursheed, P. Schulz, F. Burmeister and G. Fettweis, "Digital Twin of the Radio Environment: A Novel Approach for Anomaly Detection in Wireless Networks." arXiv preprint arXiv:2308.06980 (2023).
+A. Krause, M. D. Khursheed, P. Schulz, F. Burmeister and G. Fettweis, "Digital Twin of the Radio Environment: A Novel Approach for Anomaly Detection in Wireless Networks," in Proceedings of 2023 IEEE Globecom Workshops: 3rd Workshop on Sustainable and Resilient Industrial Networks (GC 2023 Workshop - SRINetworks 2023), Kuala Lumpur, Malaysia, Dec 2023.
 
- It can be found here [https://arxiv.org/abs/2308.06980](https://arxiv.org/abs/2308.06980).
+A preprint of the paper can be found on [arXiv](https://arxiv.org/abs/2308.06980).
+
+Dataset:
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10512316.svg)](https://doi.org/10.5281/zenodo.10512316)
 
 ## Workflow
 
 The workflow is split into two parts: dataset generation and anomaly detection on the generated data.
+
 
 ### Data Formats
 
@@ -19,8 +24,12 @@ The following data formats are used in the process of results generation. *fspl*
 * **Measurements:** Contains a collection of measurements. File name is *fspl_measurements\<nr\>.pkl*. Each measurement entity is a collection of values, whereby each value is the difference between the measured (original) RSS and the RSS expected from the digital twin at the same location.
 * **Results:** Contains the results of anomaly detecion for a given measurement data set. File name *fspl_results\<nr\>.pkl*. Each file contains a dictionary with the following entries: ```y_test```, ```y_hat``` and ```jammer```. ```jammer``` refers to an array, in which the transmitters of type jammer are saved or an empty array, respectively in case there is no jammer. ```y_hat``` is a score to allow a soft decision / ROC curve creation.
 
+
 ### Dataset Generation
-The dataset generation consists of three steps. For each script, there is a corresponding `yaml` file in the `conf` folder, which contains the parameters for each step.
+
+**Note**: The dataset is uploaded at [https://zenodo.org/records/10512316](https://zenodo.org/records/10512316). Instead of generating the dataset, you can also download it and save it in the `datasets` folder. Then, you can skip the dataset generation and directly execute the anomaly detection.
+
+The dataset generation consists of three steps. For each script, there is a corresponding `yaml` file in the `conf` folder, which contains the parameters for each step. For each dataset file, a `.txt` file is generated, which contains the parameters used for the generation of the dataset. The dataset files are saved in the `datasets` folder.
 
 1. Create pathloss map dataset using `src\dataset_generation\pathloss_map_generation.py`. In this step, for random transmitter positions path loss maps including shadowing are generated.
 2. Create a radio map dataset using `src\dataset_generation\radio_map_generation.py`. First, the number of regular transmitters $N_{reg}$ is specified. Then, one pathlossmap is randomly chosen for each transmitter (i.e., random locations of the transmitters). Each pathloss map is converted into a radiomap by taking the transmit power into account($P_{rx} = p_{tx} - L). The received power are added up to obtain the total received power at each pixel on the map. For some maps (according to the specified jammer probability), a jammer is added to the map. The jammer is also based on one of the pre-generated pathloss maps.
@@ -81,3 +90,20 @@ Yet, there are more unsupervised and even supervised methods for comparison impl
 ### Positioning inaccuracy
 
 See paper > IV.A Building the Digital Twin for more information on how the poisitioning inaccuracy is modeled.
+
+## Citation
+
+If you use the code or the dataset, please cite the following paper:
+
+```bibtex
+@INPROCEEDINGS{krause2023digital,
+author={Krause, Anton and Khursheed, Mohd Danish and Schulz, Philipp and Burmeister, Friedrich and Fettweis, Gerhard P.},
+title={Digital Twin of the Radio Environment: A Novel Approach for Anomaly
+Detection in Wireless Networks},
+booktitle={2023 IEEE Globecom Workshops (GC Wkshps): 3rd Workshop on Sustainable and
+Resilient Industrial Networks (GC 2023 Workshop - SRINetworks)},
+address={Kuala Lumpur, Malaysia},
+month={12},
+year={2023},
+}
+```
