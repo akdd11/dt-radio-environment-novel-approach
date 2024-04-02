@@ -5,6 +5,7 @@ This code is used for the paper:
 A. Krause, M. D. Khursheed, P. Schulz, F. Burmeister and G. Fettweis, "Digital Twin of the Radio Environment: A Novel Approach for Anomaly Detection in Wireless Networks," in Proceedings of 2023 IEEE Globecom Workshops: 3rd Workshop on Sustainable and Resilient Industrial Networks (GC 2023 Workshop - SRINetworks 2023), Kuala Lumpur, Malaysia, Dec 2023.
 
 A preprint of the paper can be found on [arXiv](https://arxiv.org/abs/2308.06980).
+The paper on IEEE Xplore can be found [here](https://ieeexplore.ieee.org/document/10464447).
 
 Dataset:
 
